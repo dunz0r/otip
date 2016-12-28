@@ -23,3 +23,8 @@ import os
 app = Flask(__name__)
 app.config.from_object('config')
 #}}}
+
+class name():
+    @app.route('/', methods = ['GET', 'POST'])
+    def index():
+        return 'index'
