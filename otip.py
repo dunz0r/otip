@@ -22,14 +22,14 @@ import os
 
 #{{{ Application config
 app = Flask(__name__)
-app.config.from_object('config')
+app.config.from_pyfile('config.cfg')
 db = SQLAlchemy(app)
 #}}}
 
 #{{{ Oti Class - Creates the id and encrypts the information
 class Oti(db.Model):
 	"""
-	The oti class creates the oti and encrypts the information
+	Class that creates an Oti
 	"""
 	id = db.Column(db.Integer, primary_key=True)
 	content = db.Column(db.LargeBinary)

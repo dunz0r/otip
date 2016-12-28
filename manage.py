@@ -1,23 +1,21 @@
-#! /usr/bin/env python3
-# -*- coding: utf-8 -*-
-# vim:fenc=utf-8
-#
-# Copyright © 2016 Gabriel Fornaeus <gf@hax0r.se>
-#
-# Distributed under terms of the GPLv3 license.
-
-"""
-
-"""
-
 from flask.ext.script import Manager
 from otip import app, db
 
+
 manager = Manager(app)
+
 
 @manager.command
 def initdb():
+    """Creates all database tables."""
     db.create_all()
 
+
+@manager.command
+def dropdb():
+    """Drops all database tables."""
+    db.drop_all()
+
+
 if __name__ == '__main__':
-    manager.run
+    manager.run()
