@@ -15,31 +15,32 @@ Share files/text-snippets via self-destructing links
 from flask import Flask, render_template, request
 import logging
 from logging import Formatter, FileHandler
+from flask.ext.sqlalchemy import SQLAlchemy
+import datetime
 import os
 #}}}
 
 #{{{ Application config
 app = Flask(__name__)
 app.config.from_object('config')
+db = SQLAlchemy(app)
 #}}}
 
 #{{{ OTI Class - Creates the id and encrypts the information
-class oti():
+class oti(db.Model):
 	"""
-	The oti class creates the id and encrypts the information
+	The oti class creates the oti and encrypts the information
 	"""
+	id = db.Column(db.Integer, primary_key=True)
+	content = db.Column(db.LargeBinary)
+	pub_date = db.Column(db.DateTime)
+	del_date = db.Column(db.DateTime)
 
-	def new_id():
-		"""
-		Create a new ID for an OTI
-		arguments: none
-		returns: a new id
-		"""
-		nid = ''
-		while len(nid) < ID_LENGTH:
-			n = random.rand(0, len(ID_SYMBOLS))
-			nid = nid + ID_SYMBOLS[n:n +1]
-		return nid
+	def __init__(self, content, del_date):
+		self.content = content
+		self.pub_date = datetime.utcnow()
+		self.del_date = del_date
+
 #}}}
 
 #{{{ Pages class
@@ -57,12 +58,12 @@ class pages():
 		elif request.method == 'POST':
 			return 'post stuff'
 
-	@app.route('/get', methods = ['GET'])
+	@app.route('/<int:oti_id>/<string:encryption_key>', methods = ['GET'])
 	def get():
 		"""
 		Renders what happens when you do a GET-request against the application
 		"""
-		return 'get'
+		return 'OTI ID: %d, encryption_key: %s' % (oti_id, encryption_key)
 #}}}
 
 # Run the application
