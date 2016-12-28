@@ -25,7 +25,16 @@ app.config.from_object('config')
 
 #{{{ OTI Class - Creates the id and encrypts the information
 class oti():
+	"""
+	The oti class creates the id and encrypts the information
+	"""
 	def new_id():
+	#TODO check for collisions
+	"""
+	Create a new ID for an OTI
+	arguments: none
+	returns: a new id
+	"""
 		nid = ''
 		while len(nid) < ID_LENGTH:
 			n = random.rand(0, len(ID_SYMBOLS))
@@ -35,8 +44,14 @@ class oti():
 
 #{{{ Pages class
 class pages():
+	"""
+	The pages class contains the webpages that are rendered
+	"""
 	@app.route('/', methods = ['GET', 'POST'])
 	def index():
+	"""
+	Not unsurprisingly, this renders the index page
+	"""
 		if request.method == 'GET':
 			return 'index'
 		elif request.method == 'POST':
@@ -44,6 +59,9 @@ class pages():
 
 	@app.route('/get', methods = ['GET'])
 	def get():
+	"""
+	Renders what happens when you do a GET-request against the application
+	"""
 		return 'get'
 #}}}
 
