@@ -49,9 +49,9 @@ class pages():
 	The pages class contains the webpages that are rendered
 	"""
 	@app.route('/', methods = ['GET', 'POST'])
-	def index():
+	def new_oti():
 		"""
-		Not unsurprisingly, this renders the index page
+		This lets you create a new oti
 		"""
 		if request.method == 'GET':
 			return 'index'
