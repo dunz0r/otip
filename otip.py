@@ -14,8 +14,7 @@ Share files/text-snippets via self-destructing links
 #{{{ Imports
 from flask import Flask, render_template, request
 import logging
-from logging import Formatter, Filehandler
-from forms import *
+from logging import Formatter, FileHandler
 import os
 #}}}
 
@@ -24,7 +23,8 @@ app = Flask(__name__)
 app.config.from_object('config')
 #}}}
 
-class name():
+#{{{ Pages
+class pages():
 	@app.route('/', methods = ['GET', 'POST'])
 	def index():
 		if request.method == 'GET':
@@ -35,5 +35,9 @@ class name():
 	@app.route('/get', methods = ['GET'])
 	def get():
 		return 'get'
+#}}}
 
+# Run the application
+if __name__ == '__main__':
+	app.run()
 # vim: tabstop=4 noexpandtab shiftwidth=4 softtabstop=4
