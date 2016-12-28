@@ -26,8 +26,8 @@ app.config.from_object('config')
 db = SQLAlchemy(app)
 #}}}
 
-#{{{ OTI Class - Creates the id and encrypts the information
-class oti(db.Model):
+#{{{ Oti Class - Creates the id and encrypts the information
+class Oti(db.Model):
 	"""
 	The oti class creates the oti and encrypts the information
 	"""
@@ -63,6 +63,7 @@ class pages():
 		"""
 		Presents the oti
 		"""
+		oti = Oti.query.get_or_404(oti_id)
 		return 'OTI ID: %d, encryption_key: %s' % (oti_id, encryption_key)
 #}}}
 
