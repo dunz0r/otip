@@ -14,6 +14,11 @@ import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
+# Which symbols to use for generating the links
+ID_SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+
+# Length of an ID, don't overdo it, 4^35 is 1.1805916e+21, which is ridiciously big
+ID_LENGTH = 4
 # Enable debug mode
 DEBUG = True
 

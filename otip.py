@@ -23,7 +23,17 @@ app = Flask(__name__)
 app.config.from_object('config')
 #}}}
 
-#{{{ Pages
+#{{{ OTI Class - Creates the id and encrypts the information
+class oti():
+	def new_id():
+		nid = ''
+		while len(nid) < ID_LENGTH:
+			n = random.rand(0, len(ID_SYMBOLS))
+			nid = nid + ID_SYMBOLS[n:n +1]
+		return nid
+#}}}
+
+#{{{ Pages class
 class pages():
 	@app.route('/', methods = ['GET', 'POST'])
 	def index():
