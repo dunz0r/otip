@@ -25,6 +25,15 @@ app.config.from_object('config')
 #}}}
 
 class name():
-    @app.route('/', methods = ['GET', 'POST'])
-    def index():
-        return 'index'
+	@app.route('/', methods = ['GET', 'POST'])
+	def index():
+		if request.method == 'GET':
+			return 'index'
+		elif request.method == 'POST':
+			return 'post stuff'
+
+	@app.route('/get', methods = ['GET'])
+	def get():
+		return 'get'
+
+# vim: tabstop=4 noexpandtab shiftwidth=4 softtabstop=4
