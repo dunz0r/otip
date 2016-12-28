@@ -59,14 +59,11 @@ class pages():
 			return 'post stuff'
 
 	@app.route('/<int:oti_id>/<string:encryption_key>', methods = ['GET'])
-	def get(oti_id,encryption_key=None):
+	def get(oti_id,encryption_key):
 		"""
-		Renders what happens when you do a GET-request against the application
+		Presents the oti
 		"""
-		if encryption_key is None:
-			return 'No data for you!'
-		else
-			return 'OTI ID: %d, encryption_key: %s' % (oti_id, encryption_key)
+		return 'OTI ID: %d, encryption_key: %s' % (oti_id, encryption_key)
 #}}}
 
 # Run the application
