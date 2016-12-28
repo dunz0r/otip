@@ -54,7 +54,7 @@ class pages():
 		This lets you create a new oti
 		"""
 		if request.method == 'GET':
-			return 'index'
+			return render_template('new_oti.html')
 		elif request.method == 'POST':
 			return 'post stuff'
 

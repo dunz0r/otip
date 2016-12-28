@@ -2,18 +2,8 @@
 <title>{% block title %}{% endblock %} | OTIP</title>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 <div class=page>
-  <h1>Flask Pastebin</h1>
-  <ul class=nav>
-    <li><a href="{{ url_for('new_paste') }}">New Paste</a>
-    {% if g.user %}
-    <li><a href="{{ url_for('my_pastes') }}">My Pastes</a>
-    <li><a href="{{ url_for('logout') }}">Sign out ({{ g.user.display_name }})</a>
-    {% else %}
-    <li><a href="{{ url_for('login') }}">Sign in with Facebook</a>
-    {% endif %}
+  <h1>OneTime Information Provider</h1>
+    <li><a href="{{ url_for('new_oti') }}"New OneTime Information</a></li>
   </ul>
-  {% for message in get_flashed_messages() %}
-    <p class=flash>{{ message }}
-  {% endfor %}
   {% block body %}{% endblock %}
 </div>
