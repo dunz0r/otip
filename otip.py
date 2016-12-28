@@ -58,7 +58,7 @@ class pages():
 		elif request.method == 'POST':
 			return 'post stuff'
 
-	@app.route('/<int:oti_id>/<string:encryption_key>', methods = ['GET'])
+	@app.route('/<int:oti_id>:<string:encryption_key>', methods = ['GET'])
 	def get(oti_id,encryption_key):
 		"""
 		Presents the oti
