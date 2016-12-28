@@ -4,5 +4,6 @@ OneTime Information Provider
 
 ## Planned features
  * Encrypted storage
- * Self-destructing text-snippets
+ * Self-destructing information
  * Configurable destruction-timeout
+ * Filetyp detection
