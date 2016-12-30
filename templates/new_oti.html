@@ -3,6 +3,14 @@
 {% block body %}
   <form action="" method=post>
     <div class=code><textarea name=content cols=60 rows=18></textarea></div>
+	<h3>Lifetime</h3>
+	<div class=lifetime>
+		<select id="del_date" name="del_date">
+			<option value="86400">24 hours</option>
+			<option value="604800">One week</option>
+			<option value="2592000">30 days</option>
+		</select>
+	</div>
     <p><input type=submit value="Submit">
   </form>
 {% endblock %}

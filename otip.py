@@ -12,7 +12,7 @@ Share files/text-snippets via self-destructing links
 """
 
 #{{{ Imports
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import logging
 from logging import Formatter, FileHandler
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -37,9 +37,9 @@ class Oti(db.Model):
 	del_date = db.Column(db.DateTime)
 
 	def __init__(self, content, del_date):
-		self.content = content
-		self.pub_date = datetime.utcnow()
-		self.del_date = del_date
+		self.content = bytes(content, 'UTF-8')
+		self.pub_date = datetime.datetime.utcnow()
+		self.del_date = self.pub_date + datetime.timedelta(seconds=int(del_date))
 
 #}}}
 
@@ -56,15 +56,18 @@ class pages():
 		if request.method == 'GET':
 			return render_template('new_oti.html')
 		elif request.method == 'POST':
-			return 'post stuff'
+			oti = Oti(request.form['content'], request.form['del_date'])
+			db.session.add(oti)
+			db.session.commit()
+			return redirect(url_for('show_oti', oti_id=oti.id))
 
-	@app.route('/<int:oti_id>:<string:encryption_key>', methods = ['GET'])
-	def get(oti_id,encryption_key):
+	@app.route('/<int:oti_id>', methods = ['GET'])
+	def show_oti(oti_id,encryption_key=None):
 		"""
 		Presents the oti
 		"""
 		oti = Oti.query.get_or_404(oti_id)
-		return 'OTI ID: %d, encryption_key: %s' % (oti_id, encryption_key)
+		return render_template('oti_created.html', oti=oti)
 #}}}
 
 # Run the application
