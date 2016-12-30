@@ -1,8 +1,8 @@
 body          { margin: 0; padding: 0; }
 body, input   { font-size: 16px; font-family: 'Helvetica Neue', sans-serif; }
-h1            { margin: 0; font-weight: normal; color: #c00; }
+h1            { margin: 0; font-weight: normal; color: #f0535c; }
 a             { color: black; }
-a:hover       { color: #c00; }
+a:hover       { color: #f0535c; }
 h2            { font-weight: normal; margin: 0; }
 dl            { overflow: auto; font-size: 14px; }
 dl dt         { font-weight: bold; width: 90px; float: left; clear: left; }
