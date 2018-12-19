@@ -59,7 +59,7 @@ class pages():
 			oti = Oti(request.form['content'], request.form['del_date'])
 			db.session.add(oti)
 			db.session.commit()
-			return redirect(url_for('show_oti', oti_id=oti.id))
+			return render_template('oti_created.html', oti=oti)
 
 	@app.route('/<int:oti_id>', methods = ['GET'])
 	def show_oti(oti_id,encryption_key=None):
@@ -67,7 +67,9 @@ class pages():
 		Presents the oti
 		"""
 		oti = Oti.query.get_or_404(oti_id)
-		return render_template('oti_created.html', oti=oti)
+		db.session.delete(oti)
+		db.session.commit()
+		return render_template('oti_show.html', oti=oti)
 #}}}
 
 # Run the application
